@@ -6,8 +6,25 @@ import java.util.List;
 public class MargheritaPizzaBuilder implements PizzaBuilder {
     private String dough;
     private String sauce;
-    private String cheese;
-    private final List<String> toppings = new ArrayList<>();
+    private List<String> toppings;
+    private boolean extraCheese;
+    private int sizeCm;
+
+    public MargheritaPizzaBuilder() {
+        this.reset();
+    }
+
+    @Override
+    public PizzaBuilder reset() {
+        this.dough = "Thin";
+        this.sauce = "Tomato";
+        this.toppings = new ArrayList<>();
+        this.toppings.add("Mozzarella");
+        this.toppings.add("Basil");
+        this.extraCheese = false;
+        this.sizeCm = 30;
+        return this;
+    }
 
     @Override
     public PizzaBuilder setDough(String dough) {
@@ -22,22 +39,28 @@ public class MargheritaPizzaBuilder implements PizzaBuilder {
     }
 
     @Override
-    public PizzaBuilder setCheese(String cheese) {
-        this.cheese = cheese;
-        return this;
-    }
-
-    @Override
     public PizzaBuilder addTopping(String topping) {
         this.toppings.add(topping);
         return this;
     }
 
     @Override
+    public PizzaBuilder setExtraCheese(boolean extraCheese) {
+        this.extraCheese = extraCheese;
+        return this;
+    }
+
+    @Override
+    public PizzaBuilder setSize(int sizeCm) {
+        this.sizeCm = sizeCm;
+        return this;
+    }
+
+    @Override
     public Pizza build() {
-        if (dough == null || sauce == null) {
-            throw new IllegalStateException("Pizza construction failed: Dough and Sauce are required.");
+        if (sizeCm < 15 || sizeCm > 50) {
+            throw new IllegalStateException("Pizza size must be between 15 and 50 cm");
         }
-        return new Pizza(dough, sauce, cheese, toppings);
+        return new Pizza(dough, sauce, new ArrayList<>(toppings), extraCheese, sizeCm);
     }
 }
