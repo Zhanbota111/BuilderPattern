@@ -1,9 +1,15 @@
-# Builder Pattern Implementation
+# Builder Pattern — Pizza Construction System
 
-## Description
-This repository contains an implementation of the Builder Creational Design Pattern in Java (JDK 17) for creating custom `Pizza` objects.
+This project demonstrates the **Builder Creational Pattern** implemented in Java (JDK 17).
+
+## System Components
+- **Product (`Pizza`)**: Complex object representing a customized pizza.
+- **Builder (`PizzaBuilder`)**: Abstract interface defining step-by-step construction.
+- **Concrete Builders (`PepperoniPizzaBuilder`, `MargheritaPizzaBuilder`)**: Build specific pizza variants using a fluent interface.
+- **Director (`PizzaDirector`)**: Manages reusable creation workflows for preset pizzas.
+- **Client (`Main`)**: Demonstrates step-by-step custom builds and Director presets.
 
 ## How to Run
-1. Open the project in IntelliJ IDEA.
-2. Ensure JDK 17+ is configured.
-3. Run `pattern.Main` to test the implementation.
+1. Open the project in IntelliJ IDEA (JDK 17+).
+2. Navigate to `src/pattern/Main.java`.
+3. Run the `main` method.

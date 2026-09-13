@@ -4,19 +4,20 @@ public class Main {
     public static void main(String[] args) {
         PizzaDirector director = new PizzaDirector();
 
-        // 1. Создание через Director
-        PizzaBuilder margheritaBuilder = new MargheritaPizzaBuilder();
-        Pizza margherita = director.makeClassicMargherita(margheritaBuilder);
-        System.out.println("Built via Director: " + margherita);
+        //Создание стандартных пицц через Director
+        PepperoniPizzaBuilder pepperoniBuilder = new PepperoniPizzaBuilder();
+        Pizza spicyPepperoni = director.makeLargeSpicyPizza(pepperoniBuilder);
+        System.out.println("Director Built Spicy Pepperoni: " + spicyPepperoni);
 
-        // 2. Создание вручную через Builder (Fluent API)
-        Pizza customPizza = new PepperoniPizzaBuilder()
-                .setDough("Stuffed Crust")
-                .setSauce("Barbecue")
-                .setCheese("Cheddar")
-                .addTopping("Pepperoni")
-                .addTopping("Mushrooms")
+        //Ручная кастомная сборка через Fluent API
+        MargheritaPizzaBuilder margheritaBuilder = new MargheritaPizzaBuilder();
+        Pizza customMargherita = margheritaBuilder.reset()
+                .setSize(25)
+                .setDough("Cheese Crust")
+                .addTopping("Olives")
+                .setExtraCheese(true)
                 .build();
-        System.out.println("Built directly via Client: " + customPizza);
+
+        System.out.println("Custom Built Margherita: " + customMargherita);
     }
 }
