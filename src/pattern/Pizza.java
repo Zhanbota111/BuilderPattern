@@ -1,33 +1,30 @@
 package pattern;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Pizza {
     private final String dough;
     private final String sauce;
-    private final String cheese;
     private final List<String> toppings;
+    private final boolean extraCheese;
+    private final int sizeCm;
 
-    public Pizza(String dough, String sauce, String cheese, List<String> toppings) {
+    public Pizza(String dough, String sauce, List<String> toppings, boolean extraCheese, int sizeCm) {
         this.dough = dough;
         this.sauce = sauce;
-        this.cheese = cheese;
-        this.toppings = toppings != null ? List.copyOf(toppings) : Collections.emptyList();
+        this.toppings = toppings;
+        this.extraCheese = extraCheese;
+        this.sizeCm = sizeCm;
     }
-
-    public String getDough() { return dough; }
-    public String getSauce() { return sauce; }
-    public String getCheese() { return cheese; }
-    public List<String> getToppings() { return toppings; }
 
     @Override
     public String toString() {
-        return "Pizza {" +
+        return "Pizza{" +
                 "dough='" + dough + '\'' +
                 ", sauce='" + sauce + '\'' +
-                ", cheese='" + cheese + '\'' +
                 ", toppings=" + toppings +
+                ", extraCheese=" + extraCheese +
+                ", size=" + sizeCm + "cm" +
                 '}';
     }
 }
